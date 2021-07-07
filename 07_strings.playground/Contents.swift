@@ -62,3 +62,69 @@ for n in 1...9{
     print(message)
 }
 
+let greeting = "Hola, que tal?"
+greeting[greeting.startIndex]
+greeting[greeting.index(before: greeting.endIndex)]
+
+for idx in greeting.indices{
+    print(greeting[idx]);
+}
+
+var welcome = "Hola"
+
+welcome.insert("!", at: welcome.endIndex)
+welcome.insert(contentsOf: " que tal", at: welcome.index(before: welcome.endIndex))
+
+let range = welcome.index(welcome.endIndex, offsetBy: -7)..<welcome.endIndex
+
+welcome.removeSubrange(range)
+welcome
+
+let index = greeting.firstIndex(of: ",") ?? greeting.endIndex
+let fristPart = greeting[..<index]
+
+let newString = String(fristPart)
+
+let newGreeting = "Hola, Soy José Francisco"
+newGreeting.hasPrefix("Hola")
+newGreeting.hasSuffix("l")
+
+let collection = [
+    "Act 1: Scene 1",
+    "Act 1: Scene 2",
+    "Act 1: Scene 3",
+    "Act 2: Scene 1",
+    "Act 2: Scene 2",
+    "Act 2: Scene 3",
+    "Act 3: Scene 1",
+    "Act 3: Scene 2",
+    "Act 3: Scene 3",
+]
+
+
+var actOneSceneCount = 0
+
+for scene in collection{
+    if scene.hasPrefix("Act 1"){
+        actOneSceneCount += 1
+    }
+}
+
+print(actOneSceneCount)
+
+let ghost = "¡Fantasma! 👻"
+
+for codeUnit in ghost.utf8{
+    print(codeUnit, terminator: " ")
+}
+print("")
+for codeUnit in ghost.utf16{
+    print(codeUnit, terminator: " ")
+}
+
+print("")
+for codeUnit in ghost.unicodeScalars{
+    print(codeUnit, terminator: " ")
+}
+
+
