@@ -106,3 +106,47 @@ houseAnimals.isSubset(of: farmAnimals)
 farmAnimals.isSuperset(of: houseAnimals)
 //a y B son disjuntos si su interseccion es vacia
 farmAnimals.isDisjoint(with: cityAnimals)
+
+
+
+//Diccionario [k1: v1, k2:v2 ...]
+
+var nameOfIntegers = [Int: String]()
+nameOfIntegers[15] = "Quince"
+nameOfIntegers = [:] //diccionario vacio
+
+var airports: [String: String] = ["YYZ": "Toronto", "DUB":"Dublin", "DGO": "Durango"]
+airports.count
+
+airports.isEmpty
+
+airports["LHR"] = "London City Airport"
+airports
+airports["LHR"] = "London Heathrow"
+airports
+
+if let oldValue = airports.updateValue("Dublin Airport", forKey: "DUB"){
+    print("El aeropuerto anterionmente se llamaba \(oldValue)")
+}
+
+airports["DGO"] = nil
+if let removedAirport = airports.removeValue(forKey: "DUB"){
+    print(removedAirport)
+}
+airports
+
+
+for (key, value) in airports{
+    print("\(key): \(value)")
+}
+
+for airportKey in airports.keys {
+    print(airportKey)
+}
+
+for airportName in airports.values{
+    print(airportName)
+}
+
+let airportKey = [String](airports.keys)
+let airportNames = [String](airports.values)
