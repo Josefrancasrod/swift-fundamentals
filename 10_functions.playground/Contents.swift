@@ -94,4 +94,99 @@ func mean(_ numbers: Double...) -> Double {
 
 mean(1,2,3,4,5,6)
 
+var x = 5
+
+func addOne(number: Int) {
+    var number2 = number
+    number2 += 1
+    print("el número ahora es \(number2)")
+}
+
+addOne(number: x)
+
+
+func swapTwoInts(_ a: inout Int, _ b: inout Int){
+    let tempA = a
+    a = b
+    b = tempA
+}
+
+var someInt = 3
+var otherInt = 7
+print("\(someInt), \(otherInt)")
+swapTwoInts(&someInt, &otherInt)
+print("\(someInt), \(otherInt)")
+
+
+func addTwoInter(_ a: Int, _ b: Int) -> Int {
+    return a+b
+}//(Int, Int) -> Int
+
+func multiplyTwoInter(_ a: Int, _ b: Int) -> Int {
+    return a*b
+}
+
+func printHW() {
+    print("Hello World")
+} // () -> Void
+
+var mathFunction: (Int, Int) -> Int = multiplyTwoInter
+
+mathFunction(4,5)
+
+func printMathResult(_ mathFunc: (Int, Int) -> Int, _ a: Int, _ b: Int){
+    print("Resultado \(mathFunc(a,b))")
+}
+
+
+printMathResult(multiplyTwoInter, 5, 9)
+/*
+func stepForward(_ intput: Int) -> Int{
+    return intput+1
+}
+
+func stepBackward(_ intput: Int) -> Int{
+    return intput-1
+}
+
+func chooseStepFunction(backward: Bool) -> (Int) -> Int {
+    return backward ? stepBackward : stepForward
+}
+
+var value = 7
+
+let moveNearerZero = chooseStepFunction(backward: value > 0)
+
+while value != 0 {
+    print("\(value)...")
+    value = moveNearerZero(value)
+}
+*/
+
+
+
+func chooseStepFunction(backward: Bool) -> (Int) -> Int {
+    
+    func stepForward(_ intput: Int) -> Int{
+        return intput+1
+    }
+
+    func stepBackward(_ intput: Int) -> Int{
+        return intput-1
+    }
+    
+    return backward ? stepBackward : stepForward
+}
+
+var value = 7
+
+let moveNearerZero = chooseStepFunction(backward: value > 0)
+
+while value != 0 {
+    print("\(value)...")
+    value = moveNearerZero(value)
+}
+
+print("cero...")
+
 
