@@ -97,6 +97,46 @@ cuboid.volume
 
 //willSet //didSet
 
+class StepCounter{
+    var totalSteps
+        : Int = 0 {
+        willSet(newTotalSteps){
+            print("El numero de pasos va a subir hasta \(newTotalSteps)")
+        }
+        didSet{
+            if totalSteps > oldValue {
+                print("el numero de pasos a incrementado en \(totalSteps - oldValue)")
+            }
+        }
+    }
+}
 
+let stepCoubnter = StepCounter()
+stepCoubnter.totalSteps = 200
+stepCoubnter.totalSteps = 520
 
+struct SomeStruct{
+    var counter = 0
+    static var stroredTypeProperty = "SOME VALUE"
+    static var computedTypeProperty: Int {
+        return 5
+    }
+}
+
+var instaceStr = SomeStruct()
+
+var otherInstaceStr = SomeStruct()
+
+SomeStruct.computedTypeProperty
+
+class SomeClass{
+    static var storedTypeProperty = "Some Value"
+    static var computedTypeProperty: Int {
+        return -9
+    }
+    
+    class var overridableComputedTypeProperty:Int{
+        return 108
+    }
+}
 
