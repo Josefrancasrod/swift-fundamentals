@@ -117,7 +117,7 @@ stepCoubnter.totalSteps = 520
 
 struct SomeStruct{
     var counter = 0
-    static var stroredTypeProperty = "SOME VALUE"
+    static var stroredTypeProperty = "SOME VALUE" //Con static solo se puede acceder a traves de la clase no desde la instancia
     static var computedTypeProperty: Int {
         return 5
     }
@@ -130,7 +130,7 @@ var otherInstaceStr = SomeStruct()
 SomeStruct.computedTypeProperty
 
 class SomeClass{
-    static var storedTypeProperty = "Some Value"
+    static var storedTypeProperty = "Some Value" //Con staticvar en la herencia se comparte entre todas las instancias
     static var computedTypeProperty: Int {
         return -9
     }
@@ -139,4 +139,6 @@ class SomeClass{
         return 108
     }
 }
+
+
 
