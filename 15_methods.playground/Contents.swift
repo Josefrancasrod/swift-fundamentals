@@ -119,3 +119,5 @@ if player.tracker.advance(to: 7){
 } else{
     print("el nievel 7 esta bloqueado")
 }
+
+
