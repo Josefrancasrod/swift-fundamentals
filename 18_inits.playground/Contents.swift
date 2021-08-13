@@ -62,3 +62,130 @@ class SurveyQuestion {
 let q1 = SurveyQuestion(text: "¿Te gustan los tacos?")
 q1.ask()
 q1.response = "Si, me encantan"
+
+
+//constructores
+//Designado -> Designado super clase
+//Conveniencia -> Otro init de la misma clase
+//El ultimo init que se llame siempre debe ser designado
+
+class Vehicle {
+    var numberOfWheels = 0
+    var description: String {
+        return "\(numberOfWheels) ruedas"
+    }
+}
+
+let vehicle = Vehicle()
+vehicle.description
+
+class Bicycle: Vehicle{
+    override init() {
+        super.init()
+        numberOfWheels = 2
+    }
+}
+
+let bicycle = Bicycle()
+bicycle.description
+
+class Hoverboard: Vehicle{
+    var color: String
+    init(color: String) {
+        self.color = color
+        //aquí se llama implicitamente a super.init()
+    }
+    override var description: String{
+        return "\(super.description) en el color \(self.color)"
+    }
+}
+
+let hoverboard = Hoverboard(color: "Silver")
+hoverboard.description
+
+enum TemperatureUnit{
+    case kelvin, celsius, fahrenheit
+    
+    init?(symbol: Character) {
+        switch symbol {
+        case "K":
+            self = .kelvin
+        case "C":
+            self = .celsius
+        case "F":
+            self = .fahrenheit
+        default:
+            return nil
+        }
+    }
+}
+
+let someUnit = TemperatureUnit(symbol: "x")
+
+
+class Product{
+    let name: String
+    init?(name: String) {
+        if name.isEmpty {
+            return nil
+        }
+        self.name = name
+    }
+}
+
+class CartItem: Product{
+    let quantity: Int
+    
+    init?(name: String, quantity: Int){
+        if quantity < 1{
+            return nil
+        }
+        self.quantity = quantity
+        super.init(name: name)
+    }
+}
+
+if let someSocks = CartItem(name: "", quantity: 2){
+    print("\(someSocks.name) - \(someSocks.quantity)")
+}
+
+
+class Bank {
+    static var coinsInBank = 2_000
+    static func distribute(coins numberOfCoinsRequested: Int) -> Int{
+        let numberOfCoinsToVend = min(numberOfCoinsRequested, coinsInBank)
+        coinsInBank -= numberOfCoinsToVend
+        return numberOfCoinsToVend
+    }
+    
+    static func receive(coins: Int ){
+        coinsInBank += coins
+    }
+}
+
+
+class Player {
+    var coinsInPurse: Int
+    init(coins: Int) {
+        self.coinsInPurse = Bank.distribute(coins: coins)
+    }
+    func win(coins: Int) {
+        coinsInPurse +=  Bank.distribute(coins: coins)
+    }
+    
+    deinit {
+        Bank.receive(coins: coinsInPurse)
+    }
+}
+
+
+var playerOne: Player? = Player(coins: 100)
+
+Bank.coinsInBank
+
+playerOne!.win(coins: 1_000)
+
+Bank.coinsInBank
+
+playerOne = nil
+Bank.coinsInBank
